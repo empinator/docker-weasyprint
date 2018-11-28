@@ -48,7 +48,8 @@ def home():
 def generate():
     name = request.args.get('filename', 'unnamed.pdf')
     app.logger.info('POST  /pdf?filename=%s' % name)
-    html = HTML(string=request.data)
+    #print ( request.get_data() )
+    html = HTML(string=request.get_data())
     pdf = html.write_pdf()
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
